@@ -107,5 +107,23 @@ This is the easy part as you only have to open BEAST software, click on 'Choose 
 
 ![beast](https://github.com/gwcbi/phylobang/raw/master/img/beast.png)
 
+If everything is running correctly, you should see something like the following screenshot:
 
+![running](https://github.com/gwcbi/phylobang/raw/master/img/beastrunning.png)
+
+Once BEAST has run, you will see two files: a .log and .tree files
+
+#### Checking BEAST results for convergence
+
+Within the BEAST directory, run the program Tracer to analyze the output of BEAST. Choose 'Import Trace File...' and select the .log file BEAST just created. Since the MCMC is a stochastic algorithm, you wouldn't see the exact same results as in the screenshot, however, they should be more or less similar. Tracer will give you a number of statistics (left-hand side of window) and distribution plots on the right. The key here is to identify whether the 'trace' has stabilized, whether there is good 'mixing', and whther the ESS is > 200.
+
+![tracer](https://github.com/gwcbi/phylobang/raw/master/img/tracer.png)
+
+##### Take a look at the distribution of trees and get a point estimate as a phylogenetic tree
+
+One of the main outcomes of the BEAST analysis is a distribution of phylogenetic trees. We can obtain both a visualization of this distribution (DensiTree) and a point estimate (a phylogeny). Let's take a look at the posterior distribution of trees.
+
+Open DensiTree (comes with the BEAST package) and go to File --> Load, and select the .trees file, e.g., HBV.trees. You should see something like:
+
+![densi](https://github.com/gwcbi/phylobang/raw/master/img/densi.png)
 
