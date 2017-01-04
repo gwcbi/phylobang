@@ -90,5 +90,22 @@ And before we configure the MCMC, let's check the 'Priors' tab to make sure we a
 
 ##### Setting up the MCMC
 
-The next tab, MCMC, provides more general settings to control the length of the MCMC and the file names. Firstly we have the Length of chain. This is the number of steps the MCMC will make in the chain before finishing. Determining the length of the chain depends on things like the size of the dataset, the complexity of the models you want to run, and the accuracy of the answer. Remember that default values in BEAST, and probably on in many programs, is completely arbitrary. Since we want the example to run quickly, let's initially set the chain length to 1,000,000 as this will run reasonably quickly on most modern computers (less than 5 minutes).  
+The next tab, MCMC, provides more general settings to control the length of the MCMC and the file names. Firstly we have the Length of chain. This is the number of steps the MCMC will make in the chain before finishing. Determining the length of the chain depends on things like the size of the dataset, the complexity of the models you want to run, and the accuracy of the answer. Remember that default values in BEAST, and probably in many programs, is completely arbitrary. Since we want the example to run quickly, let's initially set the chain length to 1,000,000 as this will run reasonably quickly on most modern computers (less than 5 minutes).  
+
+The next options specify how often the parameter values in the Markov chain should be displayed on the screen and recorded in the log file. The screen output is simply for monitoring the programs progress so can be set to any value (although if set too small, the sheer quantity of information being displayed on the screen will actually slow the program down). For the log 
+file, the value should be set relative to the total length of the chain. Sampling too often will result in very large files with little extra benefit in terms of the precision of the analysis. Sample too infrequently and the log file will not contain much information about the distributions of the parameters. You probably want to aim to store no more than 10,000 samples so this should be set to no less than chain length / 10,000.  
+
+For this exercise we will set the screen log to 10000 and leave the file log to 1000. The final two options give the file names of the log files for the sampled parameters and the trees. These will be set to a default based on the name of the imported NEXUS le. **If you are using windows** then add the suffix .txt to both of these (so, HBV.log.txt and HBV.trees.txt) so that Windows recognizes these as text files.
+
+![mcmc](https://github.com/gwcbi/phylobang/raw/master/img/mcmc.png)
+
+Finally, we are ready to create the input file for BEAST, an xml file. Go to File --> Save. Use an appropriate name such as HBV.xml.  
+
+#### Running BEAST
+
+This is the easy part as you only have to open BEAST software, click on 'Choose File', and then click 'Run'.
+
+![beast](https://github.com/gwcbi/phylobang/raw/master/img/beast.png)
+
+
 
