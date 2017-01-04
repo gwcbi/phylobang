@@ -143,3 +143,9 @@ So far we've been going through the necessary steps of inferring a phylogeny usi
 Let's start by opening SPREAD, click on the 'Continuous tree' tab, and click on 'Open'. Select the HBV.tree file and change the latitude and longitud names on the left-side menu to 'locationsgeo1' and 'locationsgeo2', respectively. Finally, click on 'Output' and then on 'Plot'. You should get something like:
 
 ![spread](https://github.com/gwcbi/phylobang/raw/master/img/spread.png)
+
+##### Visualizing on GoogleEarth
+
+GoogleEarth is a widely used software for exploring and visualizing geographic information. Within SPREAD, click on 'Generate' to produce a .kml file (default is output.kml). You can open the kml file in GoogleEarth and see the spread of the epidemic animated through time.
+
+![gearth](https://github.com/gwcbi/phylobang/raw/master/img/gearth.png)
