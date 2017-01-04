@@ -136,3 +136,10 @@ The traditional way of representing trees though is by showing a point estimate.
 Once TreeAnnotator is done, open FigTree and take a look at the phylogenetic tree that you just created, i.e., HBV.tree. Go to File --> Open, and select the tree file.
 
 ![figtree](https://github.com/gwcbi/phylobang/raw/master/img/figtree.png)
+
+#### Postprocessing BEAST output for geography inference
+
+So far we've been going through the necessary steps of inferring a phylogeny using an explicit geographic model and summarizing a distribution of trees, however, one of the most exciting inferences is 'seeing' your results on a globe or map.  
+Let's start by opening SPREAD, click on the 'Continuous tree' tab, and click on 'Open'. Select the HBV.tree file and change the latitude and longitud names on the left-side menu to 'locationsgeo1' and 'locationsgeo2', respectively. Finally, click on 'Output' and then on 'Plot'. You should get something like:
+
+![spread](https://github.com/gwcbi/phylobang/raw/master/img/spread.png)
