@@ -3,12 +3,13 @@ Welcome to the Continuous phylogeography tutorial for the [International Confere
 
 In this tutorial, we will learn how to use phylogenetics and statistics to infer the most probably origin and geographic spread of a pathogen outbreak. In your computers, you should have the following software installed:  
 
-* **BEAST** - this package contains the BEAST program, BEAUti, TreeAnnotator and other utility programs. This tutorial is written for BEAST v2.3. It is available for download from http://beast2.org/.
-* **Tracer** - this program is used to explore the output of BEAST (and other Bayesian MCMC programs). It graphically and quantitively summarizes the distributions of continuous parameters and provides diagnostic information. It is available for download from http://beast.bio.ed.ac.uk/.
-* **Spread** for summaryzing the geographic spread in a KML (available from http://www.kuleuven.ac.be/aidslab/phylogeography/SPREAD.html.
-* **GoogleEarth** for displaying the KML(just google for it, if you have not already have it installed).
+* **BEAST** - this package contains the BEAST program, BEAUti, TreeAnnotator and other utility programs. This tutorial is written for BEAST v2.3. It is available for download from [http://beast2.org/](http://beast2.org/).
+* **Tracer** - this program is used to explore the output of BEAST (and other Bayesian MCMC programs). It graphically and quantitively summarizes the distributions of continuous parameters and provides diagnostic information. It is available for download from [http://tree.bio.ed.ac.uk/software/tracer/](http://tree.bio.ed.ac.uk/software/tracer/).
+* **FigTree** - this program is used to visualize and create figures of phylogenetic trees. It is available for download from http://tree.bio.ed.ac.uk/software/figtree/
+* **Spread** for summaryzing the geographic spread in a KML (available from [http://www.kuleuven.ac.be/aidslab/phylogeography/SPREAD.html](http://www.kuleuven.ac.be/aidslab/phylogeography/SPREAD.html).
+* **GoogleEarth** for displaying the KML file (just google for it, if you have not already have it installed).
 
-The objective of the tutorial is to walk you through the necessary steps to get you from sequence alignment to GoogleEarth animation to understand the spread of infectious agents. In this case, we will use Hepatitis B virus sequences isolated throughout Europe and Africa. The data is described in an article [here](https://peerj.com/articles/2406/). However, we will use a subset for the sake of time and demonstration that consists of 17 sequences of 3221 characters.  
+The objective of the tutorial is to walk you through the necessary steps to get you from sequence alignment to GoogleEarth animation to understand the spread of infectious agents. In this case, we will use Hepatitis B virus sequences isolated throughout Europe and Africa. The data is described in an article [here](https://peerj.com/articles/2406/). However, we will use a subset for the sake of time and demonstration that consists of 17 sequences of 3221 characters. Please note that this tutorial relies on the one provided by Remco Bouckart at [http://beast2.org/tutorials/](http://beast2.org/tutorials/).  
 
 The outline for this activity is:  
 
@@ -131,3 +132,7 @@ The great thing about a DensiTree representation is that it shows the degree of 
 The traditional way of representing trees though is by showing a point estimate. For this, we will use the software TreeAnnotator, also part of the BEAST package. Open TreeAnnotator and set it up as in the screenshot below:
 
 ![tanno](https://github.com/gwcbi/phylobang/raw/master/img/tanno.png)
+
+Once TreeAnnotator is done, open FigTree and take a look at the phylogenetic tree that you just created, i.e., HBV.tree. Go to File --> Open, and select the tree file.
+
+![figtree](https://github.com/gwcbi/phylobang/raw/master/img/figtree.png)
