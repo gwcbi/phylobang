@@ -127,3 +127,7 @@ Open DensiTree (comes with the BEAST package) and go to File --> Load, and selec
 
 ![densi](https://github.com/gwcbi/phylobang/raw/master/img/densi.png)
 
+The great thing about a DensiTree representation is that it shows the degree of uncertainty in phylogenetic clades, i.e., less suported clades tend to look more sparse and less dense than the more supported ones. Note how towards the root of the tree the lineages turn fuzzy.  
+The traditional way of representing trees though is by showing a point estimate. For this, we will use the software TreeAnnotator, also part of the BEAST package. Open TreeAnnotator and set it up as in the screenshot below:
+
+![tanno](https://github.com/gwcbi/phylobang/raw/master/img/tanno.png)
