@@ -1,0 +1,3 @@
+## Welcome to the Pre-Conference Workshop on Bioinformatics
+
+In this workshop, we will learn about two very actively developed disciplines in bioinformatics, phylogenetics and metagenomics. Firstly, we will learn how to use phylogenetics under a Bayesian Inference framework to infer the spread of an outbreak over time and space. We will even produce a GoogleEarth visualization to represent the movement of Hepatatis B virus over Eurasia and Africa. In the second half of the workshop, we will learn about metagenomics using 

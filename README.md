@@ -2,7 +2,7 @@
 
 Welcome to the Continuous phylogeography tutorial for the [International Conference on Bioinformatics and Biostatistics for Agriculture, Health, and Environment](http://dept.ru.ac.bd/stat/bio-conference/) at the [University of Rajshahi](http://www.ru.ac.bd), Bangladesh. 
 
-In this tutorial, we will learn how to use phylogenetics and statistics to infer the most probably origin and geographic spread of a pathogen outbreak. Phylogenetics and coalescent models can be used to track disease outbreaks over space and time, and also to infer epidemiological parameters such R0, and population size changes. Microbes, especially viruses, are well-suited for these models due to their high population sizes and high substitution rates, which leave marks on their genomes that we can use to learn about epidemiology.  
+In this tutorial, we will learn how to use phylogenetics and statistics to infer the most probable origin and geographic spread of a pathogen outbreak. Phylogenetics and coalescent models can be used to track disease outbreaks over space and time, and also to infer epidemiological parameters such R0, and population size changes. Microbes, especially viruses, are well-suited for these models due to their high population sizes and high substitution rates, which leave marks on their genomes that we can use to learn about epidemiology.  
 In your computers, you should have the following software installed:  
 
 * **BEAST** - this package contains the BEAST program, BEAUti, TreeAnnotator and other utility programs. This tutorial is written for BEAST v2.3. It is available for download from [http://beast2.org/](http://beast2.org/).
@@ -11,7 +11,7 @@ In your computers, you should have the following software installed:
 * **Spread** for summaryzing the geographic spread in a KML (available from [http://www.kuleuven.ac.be/aidslab/phylogeography/SPREAD.html](http://www.kuleuven.ac.be/aidslab/phylogeography/SPREAD.html).
 * **GoogleEarth** for displaying the KML file (just google for it, if you have not already have it installed).
 
-The objective of the tutorial is to walk you through the necessary steps to get you from sequence alignment to GoogleEarth animation to understand the spread of infectious agents. In this case, we will use Hepatitis B virus sequences isolated throughout Europe and Africa. The data is described in an article [here](https://peerj.com/articles/2406/). However, we will use a subset for the sake of time and demonstration that consists of 17 sequences of 3221 characters. Please note that this tutorial relies on the one provided by Remco Bouckart at [http://beast2.org/tutorials/](http://beast2.org/tutorials/).  
+The objective of the tutorial is to walk you through the necessary steps to get you from sequence alignment to GoogleEarth animation to understand the spread of infectious agents. In this case, we will use Hepatitis B virus  (HBV) sequences isolated throughout Eurasia and Africa. The data is described in an article [here](https://peerj.com/articles/2406/). However, we will use a subset of sequences for the sake of time and demonstration that consists of 17 sequences of 3221 characters. Please note that this tutorial relies on one provided by Remco Bouckart at [http://beast2.org/tutorials/](http://beast2.org/tutorials/).  
 
 The outline for this activity is:  
 
@@ -118,7 +118,7 @@ Once BEAST has run, you will see two files: a .log and .tree files
 
 #### Checking BEAST results for convergence
 
-Within the BEAST directory, run the program Tracer to analyze the output of BEAST. Choose 'Import Trace File...' and select the .log file BEAST just created. Since the MCMC is a stochastic algorithm, you wouldn't see the exact same results as in the screenshot, however, they should be more or less similar. Tracer will give you a number of statistics (left-hand side of window) and distribution plots on the right. The key here is to identify whether the 'trace' has stabilized, whether there is good 'mixing', and whther the ESS is > 200.
+Within the BEAST directory, run the program Tracer to analyze the output of BEAST. Choose 'Import Trace File...' and select the .log file BEAST just created. Since the MCMC is a stochastic algorithm, you wouldn't see the exact same results as in the screenshot, however, they should be more or less similar. Tracer will give you a number of statistics (left-hand side of window) and distribution plots on the right. The key here is to identify whether the 'trace' has stabilized, whether there is good 'mixing', and whether the ESS is > 200.
 
 ![tracer](https://github.com/gwcbi/phylobang/raw/master/img/tracer.png)
 
