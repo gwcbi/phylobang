@@ -1,7 +1,9 @@
 ## Continuous Phylogeography Tutorial
+
 Welcome to the Continuous phylogeography tutorial for the [International Conference on Bioinformatics and Biostatistics for Agriculture, Health, and Environment](http://dept.ru.ac.bd/stat/bio-conference/) at the [University of Rajshahi](http://www.ru.ac.bd), Bangladesh. 
 
-In this tutorial, we will learn how to use phylogenetics and statistics to infer the most probably origin and geographic spread of a pathogen outbreak. In your computers, you should have the following software installed:  
+In this tutorial, we will learn how to use phylogenetics and statistics to infer the most probably origin and geographic spread of a pathogen outbreak. Phylogenetics and coalescent models can be used to track disease outbreaks over space and time, and also to infer epidemiological parameters such R0, and population size changes. Microbes, especially viruses, are well-suited for these models due to their high population sizes and high substitution rates, which leave marks on their genomes that we can use to learn about epidemiology.  
+In your computers, you should have the following software installed:  
 
 * **BEAST** - this package contains the BEAST program, BEAUti, TreeAnnotator and other utility programs. This tutorial is written for BEAST v2.3. It is available for download from [http://beast2.org/](http://beast2.org/).
 * **Tracer** - this program is used to explore the output of BEAST (and other Bayesian MCMC programs). It graphically and quantitively summarizes the distributions of continuous parameters and provides diagnostic information. It is available for download from [http://tree.bio.ed.ac.uk/software/tracer/](http://tree.bio.ed.ac.uk/software/tracer/).
@@ -149,3 +151,5 @@ Let's start by opening SPREAD, click on the 'Continuous tree' tab, and click on 
 GoogleEarth is a widely used software for exploring and visualizing geographic information. Within SPREAD, click on 'Generate' to produce a .kml file (default is output.kml). You can open the kml file in GoogleEarth and see the spread of the epidemic animated through time.
 
 ![gearth](https://github.com/gwcbi/phylobang/raw/master/img/gearth.png)
+
+This concludes the first half of the workshop. If you are interested in more advanced analysis using BEAST in general or phylogeography in particular, check out BEAST tutorial pages at [http://beast2.org/tutorials/](http://beast2.org/tutorials/).
