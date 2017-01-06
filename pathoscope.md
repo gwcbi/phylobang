@@ -3,45 +3,39 @@
 
 #### Welcome to the metagenomics with PathoScope tutorial for the [International Conference on Bioinformatics and Biostatistics for Agriculture, Health, and Environment](http://dept.ru.ac.bd/stat/bio-conference/) at the [University of Rajshahi](http://www.ru.ac.bd), Bangladesh. 
 
-In this tutorial, we will learn how to go from reads to taxonomic profiling using PathoScope 2.0. The program is command line based so we need to use the Terminal in Unix-based systems such as Linux and Mac. In Windows, you can use the Command Prompt provided that you have Python installed and in the Environmental Variable. Other options for Windows users are CygWin or the new Windows 10 Ubintu Bash Shell.  
-Finally, you can check out a more in-depth tutorial in the **PathoScope** repo [here](https://github.com/PathoScope/PathoScope/raw/master/pathoscope2.0_v0.02_tutorial.pdf).
+In this tutorial, we will learn how to go from reads to taxonomic profiling using PathoScope 2.0. The program is command line based so we need to use the Terminal in Unix-based systems such as Linux and Mac. Unfortunately, one of the dependencies of PathoScope uses a Unix-only program, which makes PathoScope unsuitable for Windows machines. Finally, you can check out a more in-depth tutorial in the **PathoScope** repo [here](https://github.com/PathoScope/PathoScope/raw/master/pathoscope2.0_v0.02_tutorial.pdf).
+
+### Activity for today  
+
+Today, I will demonstrate how to use PathoScope from the command line so you can reproduce these steps with your own data in the future. More importantly, we will use the Bioconductor package PathoStat to explore metagenomic data that has been analyzed with PathoScope. PathoStat lets you analyze PathoScope results using a Graphical User Interface (GUI), where you can compare the abundances of microbial species, generate and export plots, and perform some statistical tests.  
 
 ### What PathoScope can do for you
-**PathoScope** is a modular piece of software that will allow you to go all the way from a fastq file to a text file (typically tab-delimited) with columns representing genomes, their proportions, etc.  
+PathoScope is a modular piece of software that will allow you to go all the way from a fastq file to a text file (typically tab-delimited) with columns representing genomes, their proportions, etc.  
 There are 6 **PathoScope modules**, however, for this demo we will focus on the three most important ones:  
 - ***PathoLib*** - Allows users to automatically generate custom reference genome libraries for specific scenarios or datasets  
 - ***PathoMap*** - Aligns reads to target reference genome library and removes sequences that align to the filter and host libraries  
 - ***PathoID*** - Reassigns ambiguous reads, identifies microbial strains present in the sample, and estimates proportions of reads from each genome  
 
-Once you run your samples through **PathoScope**, you can easily import the outputfiles into R for downstream exploratory data analysis and statistical inferences.
+Once you run your samples through **PathoScope**, you can easily import the output files into R for downstream exploratory data analysis and statistical inferences.
 
 ### PathoScope Dependencies
-The only dependencies for **PathoScope** are [*Bowtie2*](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) and [python](https://www.python.org) *2.7.3* or higher. Make sure that both are in your PATH by issuing something like `echo $PATH`
+The only dependencies for **PathoScope** are [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) and [python](https://www.python.org) *2.7.3* or higher. Make sure that both are in your PATH by issuing something like `echo $PATH` on Unix-based machines.
 
-### Installing PathoScope and PS_demo
-PathoScope is now hosted in GitHub so you can easily get it by issuing the following command from the Terminal  
-
-		git clone https://github.com/PathoScope/PathoScope.git
-
-And PS_demo
-
-		git clone https://github.com/ecastron/PS_demo.git
-
-### Get data and get reference genomes
+### Getting data and reference genomes
 We are going to use data from a study exploring microbiome diversity in oropharingeal swabs from schizophrenia patients and healthy controls. The SRA accession number is `SRR1519057`. 
 
 ![SRA](https://github.com/ecastron/PS_demo/raw/master/img/img01.png)
 
 This file is probably too big for a demo so I randomly subsampled the reads down to a more manageable size (~40 M to 40 K reads)  
-- Go ahead and download the data [here](https://raw.githubusercontent.com/ecastron/PS_demo/master/ES_211.fastq)
-- Now you need at least two files, one to be used as target library (where your reads are going to be mapped) and another one to be used as filter library (internal controls, host genome, contaminants, etc. that you want to remove)
+* Go ahead and download the data [here](https://raw.githubusercontent.com/ecastron/PS_demo/master/ES_211.fastq)  
+* Now you need at least two files, one to be used as target library (where your reads are going to be mapped) and another one to be used as filter library (internal controls, host genome, contaminants, etc. that you want to remove)
 
 As target library, you can use any multi fasta file containing full or draft genomes, or even nucleotide entries from NCBI, and combinations of both. The only condition is that the fasta entries start with the taxonomy ID from NCBI as follows:
 
-Originally:  
+> Originally:  
 \>gi|40555938|ref|NC_005309.1| Canarypox virus, complete genome  
 
-but PathoScope likes:  
+> but PathoScope likes:  
 \>ti|44088|gi|40555938|ref|NC_005309.1| Canarypox virus, complete genome  
 
 You could do this very easily in **PathoLib**:
@@ -56,10 +50,10 @@ Or in order to create a filter library, say all human sequences:
 		
 		python  pathoscope.py -LIB python pathoscope.py LIB -genomeFile nt_ti.fa -taxonIds 9606 --subTax -outPrefix human
 
-However, I'm providing a target and filter library already formatted that you can download [here](https://www.dropbox.com/sh/3kjvec5lizwmo9l/AAAQmHEAwAfDixGtKC6eTeN1a?dl=0) and [here](https://www.dropbox.com/sh/2gzurlubxkzku0p/AADEIiGDig00FhNpu6XZ2iYaa?dl=0). The target library is a collection of genomes from the reference library of the Human Microbiome Project (description [here](http://hmpdacc.org/HMREFG/)), and the filter library is simply the human genome (hg19). We are also going to use another filter library as well ([phix174](https://www.dropbox.com/sh/9mt2a2v2xdqpj6x/AABgKTPNfwPNO7DpKjo56gdpa?dl=0)) to get rid of all the reads mapping to the Illumina internal control sequence that is sometimes added to sequencing experiments.
+However, I'm providing a target and filter library already formatted that you can download [here]() and [here](). The target library is a collection of genomes from the reference library of the Human Microbiome Project (description [here](http://hmpdacc.org/HMREFG/)), and the filter library is simply the human genome (hg19). We are also going to use another filter library as well ([phix174](https://www.dropbox.com/sh/9mt2a2v2xdqpj6x/AABgKTPNfwPNO7DpKjo56gdpa?dl=0)) to get rid of all the reads mapping to the Illumina internal control sequence that is sometimes added to sequencing experiments.
 
 ### Let's map the reads
-Once you have your data and target and filter libraries, we are ready to go ahead with the mapping step. For this we use bowtie2 so we will need to tell **PathoMap** where the bowtie2 indices are. If you don't have bowtie2 indices, not a problem, **PathoMap** will create them for you. And if your fasta files are larger than 4.6 GB (Bowtie2 limit), not a problem either, **PathoMap** will split your fasta files and create indices for each one of the resulting files.
+Once you have your data and target and filter libraries, we are ready to go ahead with the mapping step. For this, we use bowtie2 so we will need to tell **PathoMap** where the bowtie2 indices are. If you don't have bowtie2 indices, not a problem, **PathoMap** will create them for you. And if your fasta files are larger than 4.6 GB (Bowtie2 limit), not a problem either, **PathoMap** will split your fasta files and create indices for each one of the resulting files.
 
 If you have fasta files and not bowtie2 indices:
 
@@ -123,6 +117,9 @@ This represent the percentage of reads that are mapped to the genome in Column 1
 11. **Initial low confidence hits:**  
 This represent the percentage of reads that are mapped to the genome in Column 1 with an alignment hit score of 1%-50% to this genome and before pathoscope reassignment is performed.
 
-### Ready for the next demo?
+### Ready for the second half?
 
-Let's see an example analysis on data generated in **PathoScope** [here](https://github.com/ecastron/PS_demo/blob/master/demo02.md)
+For the final part of this workshop, we need some pieces of software installed in our machine:  
+
+* [R]() and [RStudio]() (Latest versions)
+* 
