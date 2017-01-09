@@ -27,7 +27,7 @@ We are going to use data from a study exploring microbiome diversity in orophari
 ![SRA](https://github.com/ecastron/PS_demo/raw/master/img/img01.png)
 
 This file is probably too big for a demo so I randomly subsampled the reads down to a more manageable size (~40 M to 40 K reads)  
-* Go ahead and download the data [here](https://raw.githubusercontent.com/ecastron/PS_demo/master/ES_211.fastq)  
+* Go ahead and download the data [here](https://raw.githubusercontent.com/ecastron/PS_demo/master/ES_211.fastq). If you are interested, sequences are part of [this study](https://peerj.com/articles/1140/)  
 * Now you need at least two files, one to be used as target library (where your reads are going to be mapped) and another one to be used as filter library (internal controls, host genome, contaminants, etc. that you want to remove)
 
 As target library, you can use any multi fasta file containing full or draft genomes, or even nucleotide entries from NCBI, and combinations of both. The only condition is that the fasta entries start with the taxonomy ID from NCBI as follows:
@@ -40,28 +40,28 @@ As target library, you can use any multi fasta file containing full or draft gen
 
 You could do this very easily in **PathoLib**:
 
-		python pathoscope.py LIB -genomeFile my_file.fasta -outPrefix target_library
+		python pathoscope2.py LIB -genomeFile my_file.fasta -outPrefix target_library
 
 Alternatively, we provide the entire NCBI nucleotide database already formatted [here] (ftp://pathoscope.bumc.bu.edu/data/nt_ti.fa.gz) (10 GB file). You could also use **PathoLib** to subsample this big file (50 GB uncompressed) and select only the taxa that you want. For instance, obtaining all the virus entries in nt_ti.fa (virus taxonomy ID = 10239)
 
-		python pathoscope.py -LIB python pathoscope.py LIB -genomeFile nt_ti.fa -taxonIds 10239 --subTax -outPrefix virus
+		python pathoscope2.py -LIB python pathoscope.py LIB -genomeFile nt_ti.fa -taxonIds 10239 --subTax -outPrefix virus
 
 Or in order to create a filter library, say all human sequences:
 		
-		python  pathoscope.py -LIB python pathoscope.py LIB -genomeFile nt_ti.fa -taxonIds 9606 --subTax -outPrefix human
+		python  pathoscope2.py -LIB python pathoscope.py LIB -genomeFile nt_ti.fa -taxonIds 9606 --subTax -outPrefix human
 
-However, I'm providing a target and filter library already formatted that you can download [here]() and [here](). The target library is a collection of genomes from the reference library of the Human Microbiome Project (description [here](http://hmpdacc.org/HMREFG/)), and the filter library is simply the human genome (hg19). We are also going to use another filter library as well ([phix174](https://www.dropbox.com/sh/9mt2a2v2xdqpj6x/AABgKTPNfwPNO7DpKjo56gdpa?dl=0)) to get rid of all the reads mapping to the Illumina internal control sequence that is sometimes added to sequencing experiments.
+However, I'm providing a target and filter library already formatted that you can download [here](https://www.dropbox.com/s/7z2c8c2walg92yv/HMP.zip?dl=0), and [here for human](https://www.dropbox.com/s/nljz9cjoc5z43k8/human.zip?dl=0) and the [internal control](https://www.dropbox.com/s/sjy94bnxw6h4a6m/phix.zip?dl=0). The target library is a collection of genomes from the reference library of the Human Microbiome Project (description [here](http://hmpdacc.org/HMREFG/)), and the filter library is simply the human genome (hg19). We are also going to use another filter library as well ([phix174](https://www.dropbox.com/sh/9mt2a2v2xdqpj6x/AABgKTPNfwPNO7DpKjo56gdpa?dl=0)) to get rid of all the reads mapping to the Illumina internal control sequence that is sometimes added to sequencing experiments.
 
 ### Let's map the reads
 Once you have your data and target and filter libraries, we are ready to go ahead with the mapping step. For this, we use bowtie2 so we will need to tell **PathoMap** where the bowtie2 indices are. If you don't have bowtie2 indices, not a problem, **PathoMap** will create them for you. And if your fasta files are larger than 4.6 GB (Bowtie2 limit), not a problem either, **PathoMap** will split your fasta files and create indices for each one of the resulting files.
 
 If you have fasta files and not bowtie2 indices:
 
-		python pathoscope.py MAP -U ES_211.fastq -targetRefFiles HMP_ref_ti_0.fa,HMP_ref_ti_1.fa -filterRefFiles human.fa,phix174.fa  -outDir . -outAlign ES_211.sam  -expTag DAV_demo
+		python pathoscope2.py MAP -U ES_211.fastq -targetRefFiles HMP_ref_ti_0.fa,HMP_ref_ti_1.fa -filterRefFiles human.fa,phix174.fa  -outDir . -outAlign ES_211.sam  -expTag DAV_demo
 
 But if you already have Bowtie2 indices (our case), you can issue the following command:
 
-		python pathoscope.py MAP -U ES_211.fastq -targetIndexPrefixes HMP_ref_ti_0,HMP_ref_ti_1 -filterIndexPrefixes genome,phix174  -outDir . -outAlign ES_211.sam  -expTag DAV_demo
+		python pathoscope2.py MAP -U ES_211.fastq -targetIndexPrefixes HMP_ref_ti_0,HMP_ref_ti_1 -filterIndexPrefixes genome,phix174  -outDir . -outAlign ES_211.sam  -expTag DAV_demo
 
 Let's give it a try...
 
