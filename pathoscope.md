@@ -119,7 +119,17 @@ This represent the percentage of reads that are mapped to the genome in Column 1
 
 ### Ready for the second half?
 
-For the final part of this workshop, we need some pieces of software installed in our machine:  
+For the final part of this workshop, we need some pieces of software installed in our machines:  
 
-* [R]() and [RStudio]() (Latest versions)
-* 
+* [R](https://www.r-project.org) and [RStudio](https://www.rstudio.com/products/rstudio/download/) (Latest versions, all free)
+* [Bioconductor](http://www.bioconductor.org/install/)
+* [PathoStat](http://www.bioconductor.org/packages/release/bioc/html/PathoStat.html)
+
+In this part, we will use PathoStat to explore the taxonomic profiles of 10 metagenomic samples from two individuals obtained over five time points (weeks).  
+These samples come from two individuals, one of which became infected with a gut bacteria that after treatment got healthy again. The idea here is that using PathoStat you guess which individual is infected. Download PathoScope's output files from [here]()  
+
+Let's run PathoStat. From the R console type:  
+	
+		setwd("~/Directory/tsv")
+
+Use the path to the directory where the provided PathoScope output is located
