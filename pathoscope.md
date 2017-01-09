@@ -126,10 +126,20 @@ For the final part of this workshop, we need some pieces of software installed i
 * [PathoStat](http://www.bioconductor.org/packages/release/bioc/html/PathoStat.html)
 
 In this part, we will use PathoStat to explore the taxonomic profiles of 10 metagenomic samples from two individuals obtained over five time points (weeks).  
-These samples come from two individuals, one of which became infected with a gut bacteria that after treatment got healthy again. The idea here is that using PathoStat you guess which individual is infected. Download PathoScope's output files from [here]()  
+These samples come from two individuals, one of which became infected with a gut bacteria that after treatment got healthy again. The idea here is that using PathoStat you guess which individual is infected. Download PathoScope's output files from [here](https://github.com/gwcbi/phylobang/blob/master/tsv.zip?raw=true).  
 
 Let's run PathoStat. From the R console type:  
 	
 		setwd("~/Directory/tsv")
 
-Use the path to the directory where the provided PathoScope output is located
+where `~/Directory/tsv` is the path to the directory where the provided PathoScope output is located. Then, with only two lines of code you can execute PathoStat:  
+
+First, creating a PathoStat object  
+
+		pstat <- createPathoStat(input_dir=".", sample_data_file="sample_data.tsv")
+And then, executing the GUI with that object preloaded  
+		
+		runPathoStat(pstat)
+You should see something like:  
+
+![pstat](https://github.com/ecastron/PS_demo/raw/master/img/pstat.png)
