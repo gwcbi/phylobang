@@ -142,4 +142,4 @@ And then, executing the GUI with that object preloaded
 		runPathoStat(pstat)
 You should see something like:  
 
-![pstat](https://github.com/ecastron/PS_demo/raw/master/img/pstat.png)
+![pstat](https://github.com/gwcbi/phylobang/raw/master/img/pstat.png)
