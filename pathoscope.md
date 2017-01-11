@@ -77,21 +77,20 @@ So that should have taken ~3 minutes to run. Now you have a number of things tha
 | Reads Mapped  | Library  | 
 |:------------- | ---------------:|
 | 1053      | HMP\_ref\_ti\_0 |
-| 1132      | HMP\_ref\_ti\_0 |
+| 1132      | HMP\_ref\_ti\_1 |
 | 916 | genome |
 | 0 | phix174 |
 
-And you should have one .sam file per library, plus another file containing the reads mapped to all target libraries (DAV\_demo-appendAlign.sam), a fastq file of the reads mapping to all targets (DAV\_demo-appendAlign.fq), and the file you most care about: ES_211.sam
+And you should have one .sam file per library, plus another file containing the reads mapped to all target libraries, a fastq file of the reads mapping to all targets, and the file you most care about: ES_211.sam
 
 ![mapout](https://github.com/gwcbi/phylobang/raw/master/img/mapout.png)
 
 ### Let's get a taxonomic profile from our .sam file
 The last step in our demo is to obtain a taxonomic profile from ES_211.sam using the read reassignment model implemented in **PathoID**
 
-		python pathoscope.py ID -alignFile ES_211.sam -fileType sam -outDir . -expTag DAV -thetaPrior 1000000
+		python pathoscope2.py ID -alignFile ES_211.sam -fileType sam -outDir . -expTag DAV -thetaPrior 1000000
 
-After running the command line above, you should get a tab-delimited file with **PathoScope's** output, and an updated .sam file representing an alignment after **PathoScope's** reassignment model was applied.  
-If you want to see all the output files you should get, check out the *output_files* directory in the PS\_demo repo.
+After running the command line above, you should get a tab-delimited file with **PathoScope's** output, and an updated .sam file representing an alignment after **PathoScope's** reassignment model was applied. The main output is the .tsv file. You can open this fle in a text editor or in Microsoft Excel.    
 
 ### Output TSV file format
 
@@ -122,7 +121,7 @@ This represent the percentage of reads that are mapped to the genome in Column 1
 11. **Initial low confidence hits:**  
 This represent the percentage of reads that are mapped to the genome in Column 1 with an alignment hit score of 1%-50% to this genome and before pathoscope reassignment is performed.
 
-### Ready for the second half?
+## Ready for the second half?
 
 For the final part of this workshop, we need some pieces of software installed in our machines:  
 
@@ -137,7 +136,7 @@ Let's run PathoStat. From the R console type:
 	
 		setwd("~/Directory/tsv")
 
-where `~/Directory/tsv` is the path to the directory where the provided PathoScope output is located. Then, with only two lines of code you can execute PathoStat:  
+where `~/Directory/tsv` is the path to the directory where the provided PathoScope output is located (you have to unzip the downloaded file). Then, with only two lines of code you can execute PathoStat:  
 
 First, creating a PathoStat object  
 
@@ -148,3 +147,17 @@ And then, executing the GUI with that object preloaded
 You should see something like:  
 
 ![pstat](https://github.com/gwcbi/phylobang/raw/master/img/pstat.png)
+
+The data is time-structured so you can explore the change in microbiome abundances over time. In this case, we have five time points (week) so let's go to the Time Series tab and select 'Time', 'genus', and all taxa but others. You should see something like:  
+
+![timeseries](https://github.com/gwcbi/phylobang/raw/master/img/timeseries.png)
+
+Since we are using a GUI, you can explore the program options by clicking on the tabs on top and selecting settings from the left-hand panel.
+
+#### Remember that you need to find what is infecting Subject H1!  
+
+This activity concludes our workshop. You probably feel that you have lots of questions and you can contact us at [eduardo.castro@unab.cl](mailto:eduardo.castro@unab.cl) and [kcrandall@gwu.edu](mailto:kcrandall@gwu.edu).  
+  
+    
+     
+     
