@@ -70,7 +70,7 @@ But if you already have Bowtie2 indices (our case), you can issue the following 
 
 Let's give it a try...
 
-![ps2](https://github.com/ecastron/PS_demo/raw/master/img/ps2.png)
+![ps2](https://github.com/gwcbi/phylobang/raw/master/img/ps2.png)
 
 So that should have taken ~3 minutes to run. Now you have a number of things that were printed to the screen as well as files that were created. The summary of the STDOUT is:
 
@@ -83,7 +83,7 @@ So that should have taken ~3 minutes to run. Now you have a number of things tha
 
 And you should have one .sam file per library, plus another file containing the reads mapped to all target libraries (DAV\_demo-appendAlign.sam), a fastq file of the reads mapping to all targets (DAV\_demo-appendAlign.fq), and the file you most care about: ES_211.sam
 
-![mapout](https://github.com/ecastron/PS_demo/raw/master/img/mapout.png)
+![mapout](https://github.com/gwcbi/phylobang/raw/master/img/ps2.png)
 
 ### Let's get a taxonomic profile from our .sam file
 The last step in our demo is to obtain a taxonomic profile from ES_211.sam using the read reassignment model implemented in **PathoID**
