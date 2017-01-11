@@ -70,7 +70,7 @@ But if you already have Bowtie2 indices (our case), you can issue the following 
 
 Let's give it a try...
 
-![map](https://github.com/ecastron/PS_demo/raw/master/img/pathomap.png)
+![ps2](https://github.com/ecastron/PS_demo/raw/master/img/ps2.png)
 
 So that should have taken ~3 minutes to run. Now you have a number of things that were printed to the screen as well as files that were created. The summary of the STDOUT is:
 
