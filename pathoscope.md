@@ -3,7 +3,7 @@
 
 #### Welcome to the metagenomics with PathoScope tutorial for the [International Conference on Bioinformatics and Biostatistics for Agriculture, Health, and Environment](http://dept.ru.ac.bd/stat/bio-conference/) at the [University of Rajshahi](http://www.ru.ac.bd), Bangladesh. 
 
-In this tutorial, we will learn how to go from reads to taxonomic profiling using PathoScope 2.0. The program is command line based so we need to use the Terminal in Unix-based systems such as Linux and Mac. Unfortunately, one of the dependencies of PathoScope uses a Unix-only program, which makes PathoScope unsuitable for Windows machines. Finally, you can check out a more in-depth tutorial in the **PathoScope** repo [here](https://github.com/PathoScope/PathoScope/raw/master/pathoscope2.0_v0.02_tutorial.pdf).
+In this tutorial, we will learn how to go from reads to taxonomic profiling using PathoScope 2.0. The program is command line based so we need to use the Terminal in Unix-based systems such as Linux and Mac. On Windows machines, the syntax is the same, however, you have to make sure that you have PathoScope's dependencies installed and on your Environmental variable. Finally, you can check out a more in-depth tutorial in the **PathoScope** repo [here](https://github.com/PathoScope/PathoScope/raw/master/pathoscope2.0_v0.02_tutorial.pdf).
 
 ### Activity for today  
 
@@ -16,10 +16,15 @@ There are 6 **PathoScope modules**, however, for this demo we will focus on the 
 - ***PathoMap*** - Aligns reads to target reference genome library and removes sequences that align to the filter and host libraries  
 - ***PathoID*** - Reassigns ambiguous reads, identifies microbial strains present in the sample, and estimates proportions of reads from each genome  
 
-Once you run your samples through **PathoScope**, you can easily import the output files into R for downstream exploratory data analysis and statistical inferences.
+Once you run your samples through **PathoScope**, you can easily import the output files into R for downstream exploratory data analysis and statistical inferences.  
+
+### Installing PathoScope
+PathoScope is hosted in GitHub so you can easily get it by issuing the following command from the Terminal  
+
+		git clone https://github.com/PathoScope/PathoScope.git
 
 ### PathoScope Dependencies
-The only dependencies for **PathoScope** are [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml) and [python](https://www.python.org) *2.7.3* or higher. Make sure that both are in your PATH by issuing something like `echo $PATH` on Unix-based machines.
+The only dependencies for **PathoScope** are [Bowtie2](https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.3.0/) and [python](https://www.python.org) *2.7.3* or higher. Make sure that both are in your PATH by issuing something like `echo $PATH` on Unix-based machines.
 
 ### Getting data and reference genomes
 We are going to use data from a study exploring microbiome diversity in oropharingeal swabs from schizophrenia patients and healthy controls. The SRA accession number is `SRR1519057`. 
@@ -27,7 +32,7 @@ We are going to use data from a study exploring microbiome diversity in orophari
 ![SRA](https://github.com/ecastron/PS_demo/raw/master/img/img01.png)
 
 This file is probably too big for a demo so I randomly subsampled the reads down to a more manageable size (~40 M to 40 K reads)  
-* Go ahead and download the data [here](https://raw.githubusercontent.com/ecastron/PS_demo/master/ES_211.fastq). If you are interested, sequences are part of [this study](https://peerj.com/articles/1140/)  
+* Go ahead and download the data [here](https://www.dropbox.com/s/dkfy5hcxfi7kvwq/ES_211.fastq?dl=1). If you are interested, sequences are part of [this study](https://peerj.com/articles/1140/)  
 * Now you need at least two files, one to be used as target library (where your reads are going to be mapped) and another one to be used as filter library (internal controls, host genome, contaminants, etc. that you want to remove)
 
 As target library, you can use any multi fasta file containing full or draft genomes, or even nucleotide entries from NCBI, and combinations of both. The only condition is that the fasta entries start with the taxonomy ID from NCBI as follows:
@@ -50,18 +55,18 @@ Or in order to create a filter library, say all human sequences:
 		
 		python  pathoscope2.py -LIB python pathoscope.py LIB -genomeFile nt_ti.fa -taxonIds 9606 --subTax -outPrefix human
 
-However, I'm providing a target and filter library already formatted that you can download [here](https://www.dropbox.com/s/7z2c8c2walg92yv/HMP.zip?dl=0), and [here for human](https://www.dropbox.com/s/nljz9cjoc5z43k8/human.zip?dl=0) and the [internal control](https://www.dropbox.com/s/sjy94bnxw6h4a6m/phix.zip?dl=0). The target library is a collection of genomes from the reference library of the Human Microbiome Project (description [here](http://hmpdacc.org/HMREFG/)), and the filter library is simply the human genome (hg19). We are also going to use another filter library as well ([phix174](https://www.dropbox.com/sh/9mt2a2v2xdqpj6x/AABgKTPNfwPNO7DpKjo56gdpa?dl=0)) to get rid of all the reads mapping to the Illumina internal control sequence that is sometimes added to sequencing experiments.
+However, I'm providing a target and filter library already formatted that you can download [here](https://www.dropbox.com/s/7z2c8c2walg92yv/HMP.zip?dl=1), and [here for human](https://www.dropbox.com/s/nljz9cjoc5z43k8/human.zip?dl=1) and the [internal control](https://www.dropbox.com/s/sjy94bnxw6h4a6m/phix.zip?dl=1). The target library is a collection of genomes from the reference library of the Human Microbiome Project (description [here](http://hmpdacc.org/HMREFG/)), and the filter library is simply the human genome (hg19). We are also going to use another filter library as well ([phix174](https://www.dropbox.com/sh/9mt2a2v2xdqpj6x/AABgKTPNfwPNO7DpKjo56gdpa?dl=0)) to get rid of all the reads mapping to the Illumina internal control sequence that is sometimes added to sequencing experiments.
 
 ### Let's map the reads
 Once you have your data and target and filter libraries, we are ready to go ahead with the mapping step. For this, we use bowtie2 so we will need to tell **PathoMap** where the bowtie2 indices are. If you don't have bowtie2 indices, not a problem, **PathoMap** will create them for you. And if your fasta files are larger than 4.6 GB (Bowtie2 limit), not a problem either, **PathoMap** will split your fasta files and create indices for each one of the resulting files.
 
 If you have fasta files and not bowtie2 indices:
 
-		python pathoscope2.py MAP -U ES_211.fastq -targetRefFiles HMP_ref_ti_0.fa,HMP_ref_ti_1.fa -filterRefFiles human.fa,phix174.fa  -outDir . -outAlign ES_211.sam  -expTag DAV_demo
+		python pathoscope2.py MAP -U ES_211.fastq -targetRefFiles HMP_ref_ti_0.fa,HMP_ref_ti_1.fa -filterRefFiles human.fa,phix174.fa  -outDir . -outAlign ES_211.sam  -expTag Bangladesh
 
 But if you already have Bowtie2 indices (our case), you can issue the following command:
 
-		python pathoscope2.py MAP -U ES_211.fastq -targetIndexPrefixes HMP_ref_ti_0,HMP_ref_ti_1 -filterIndexPrefixes genome,phix174  -outDir . -outAlign ES_211.sam  -expTag DAV_demo
+		python pathoscope2.py MAP -U ES_211.fastq -indexDir /Users/ecastron/Dropbox/14_workshops/Bangladesh/HMP  -targetIndexPrefixes HMP_ref_ti_0,HMP_ref_ti_1 -filterIndexPrefixes genome,phix174  -outDir . -outAlign ES_211.sam  -expTag Bangladesh
 
 Let's give it a try...
 
