@@ -30,9 +30,9 @@
 *   Go to -> Control Panel -> System -> Advanced system settings -> Environment Variables -> in "System variables" clic on "New..." -> in "Variable name" write "python" and in "Variable value" write the path "C:\Python27\" -> clic "OK" -> in "Variable name" write "perl" and in "Variable value" write the path "C:\Strawberry\perl\bin\" -> clic "OK" 
 * Add bowtie2 path: -btHome C:\bowtie2-2.3.0-legacy\  
 
-                C:\Python27\python C:\PathoScope-master\pathoscope\pathoscope2.py MAP -U ES_211.fastq -outDir C:\Users\Ashley\Documents\Katterinne -outAlign ES_211.sam -indexDir C:\Users\Ashley\Documents\Katterinne\index_HMP-human-phix -targetIndexPrefixes HMP_ref_ti_0,HMP_ref_ti_1 -filterIndexPrefixes genome,phix174 -btHome C:\bowtie2-2.3.0-legacy\ -expTag Bangladesh  
+        C:\Python27\python C:\PathoScope-master\pathoscope\pathoscope2.py MAP -U ES_211.fastq -outDir C:\Users\Ashley\Documents\Katterinne -outAlign ES_211.sam -indexDir C:\Users\Ashley\Documents\Katterinne\index_HMP-human-phix -targetIndexPrefixes HMP_ref_ti_0,HMP_ref_ti_1 -filterIndexPrefixes genome,phix174 -btHome C:\bowtie2-2.3.0-legacy\ -expTag Bangladesh  
 
-                C:\Python27\python C:\PathoScope-master\pathoscope\pathoscope2.py ID -alignFile ES_211.sam -fileType sam -outDir C:\Users\Ashley\Documents\Katterinne -expTag DAV -thetaPrior 1000000  
+        C:\Python27\python C:\PathoScope-master\pathoscope\pathoscope2.py ID -alignFile ES_211.sam -fileType sam -outDir C:\Users\Ashley\Documents\Katterinne -expTag DAV -thetaPrior 1000000  
                 
 **Install R and Rstudio**  
 
