@@ -24,7 +24,9 @@ PathoScope is hosted in GitHub so you can easily get it by issuing the following
 		git clone https://github.com/PathoScope/PathoScope.git
 
 ### PathoScope Dependencies
-The only dependencies for **PathoScope** are [Bowtie2](https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.3.0/) and [python](https://www.python.org) *2.7.3* or higher. Make sure that both are in your PATH by issuing something like `echo $PATH` on Unix-based machines.
+The only dependencies for **PathoScope** are [Bowtie2](https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.3.0/) and [python](https://www.python.org) *2.7.3* or higher. Make sure that both are in your PATH by issuing something like `echo $PATH` on Unix-based machines.  
+
+If you are using a Windows machine, check out [these tips](https://github.com/gwcbi/phylobang/blob/master/PathoScope2_on_Windows.md) on how to get it going.  
 
 ### Getting data and reference genomes
 We are going to use data from a study exploring microbiome diversity in oropharingeal swabs from schizophrenia patients and healthy controls. The SRA accession number is `SRR1519057`. 
@@ -55,7 +57,7 @@ Or in order to create a filter library, say all human sequences:
 		
 		python  pathoscope2.py -LIB python pathoscope.py LIB -genomeFile nt_ti.fa -taxonIds 9606 --subTax -outPrefix human
 
-However, I'm providing a target and filter library already formatted that you can download [here](https://www.dropbox.com/s/7z2c8c2walg92yv/HMP.zip?dl=1), and [here for human](https://www.dropbox.com/s/nljz9cjoc5z43k8/human.zip?dl=1) and the [internal control](https://www.dropbox.com/s/sjy94bnxw6h4a6m/phix.zip?dl=1). The target library is a collection of genomes from the reference library of the Human Microbiome Project (description [here](http://hmpdacc.org/HMREFG/)), and the filter library is simply the human genome (hg19). We are also going to use another filter library as well ([phix174](https://www.dropbox.com/sh/9mt2a2v2xdqpj6x/AABgKTPNfwPNO7DpKjo56gdpa?dl=0)) to get rid of all the reads mapping to the Illumina internal control sequence that is sometimes added to sequencing experiments.
+However, I'm providing a target and filter library already formatted that you can download [here](https://www.dropbox.com/s/7z2c8c2walg92yv/HMP.zip?dl=1), and [here for human](https://www.dropbox.com/s/nljz9cjoc5z43k8/human.zip?dl=1) and the [internal control](https://www.dropbox.com/s/sjy94bnxw6h4a6m/phix.zip?dl=1). The target library is a collection of genomes from the reference library of the Human Microbiome Project (description [here](http://hmpdacc.org/HMREFG/)), and the filter library is simply the human genome (hg19) plus the PhiX174 phage genome that Illumina uses as internal control, which may or may not be added to the sequencing experiment.  
 
 ### Let's map the reads
 Once you have your data and target and filter libraries, we are ready to go ahead with the mapping step. For this, we use bowtie2 so we will need to tell **PathoMap** where the bowtie2 indices are. If you don't have bowtie2 indices, not a problem, **PathoMap** will create them for you. And if your fasta files are larger than 4.6 GB (Bowtie2 limit), not a problem either, **PathoMap** will split your fasta files and create indices for each one of the resulting files.
