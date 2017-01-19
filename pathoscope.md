@@ -24,7 +24,9 @@ PathoScope is hosted in GitHub so you can easily get it by issuing the following
 		git clone https://github.com/PathoScope/PathoScope.git
 
 ### PathoScope Dependencies
-The only dependencies for **PathoScope** are [Bowtie2](https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.3.0/) and [python](https://www.python.org) *2.7.3* or higher. Make sure that both are in your PATH by issuing something like `echo $PATH` on Unix-based machines.
+The only dependencies for **PathoScope** are [Bowtie2](https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.3.0/) and [python](https://www.python.org) *2.7.3* or higher. Make sure that both are in your PATH by issuing something like `echo $PATH` on Unix-based machines.  
+
+If you are using a Windows machine, check out [these tips](https://github.com/gwcbi/phylobang/blob/master/PathoScope2_on_Windows.md) on how to get it going.  
 
 ### Getting data and reference genomes
 We are going to use data from a study exploring microbiome diversity in oropharingeal swabs from schizophrenia patients and healthy controls. The SRA accession number is `SRR1519057`. 
