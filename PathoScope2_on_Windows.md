@@ -16,13 +16,15 @@
 * Go to Download folder and run Windows Installer Package "strawberry-perl-5.24.0.1"  
 
 **Install Bowtie in Windows**  
-Go to Bowtie link in tutorial and select bowtie2-2.3.0-windows-legacy-x86_64.zip
-Go to Downloads folder and extract bowtie in appropiate folder (C:\)
-Go to "bowtie2-2.3.0-legacy" folder and run bowtie2 Windows Batch File
-* "target" and "filter library" take time to download (~30-45min) !
-Go to "Command Prompt" in Windows (checking)
-C:\Python27\python C:\PathoScope-master\pathoscope\pathoscope2.py -h 
-C:\Strawberry\perl\bin\perl C:\bowtie2-2.3.0-legacy\bowtie2 -h
+* Go to Bowtie link in tutorial and select bowtie2-2.3.0-windows-legacy-x86_64.zip  
+* Go to Downloads folder and extract bowtie in appropiate folder (C:\)  
+* Go to "bowtie2-2.3.0-legacy" folder and run bowtie2 Windows Batch File  
+* "target" and "filter library" take time to download (~30-45min) !  
+* Go to "Command Prompt" in Windows  
+
+    C:\Python27\python C:\PathoScope-master\pathoscope\pathoscope2.py -h 
+    C:\Strawberry\perl\bin\perl C:\bowtie2-2.3.0-legacy\bowtie2 -h
+
 Add python and perl path in windows
 Go to -> Control Panel -> System -> Advanced system settings -> Environment Variables
 -> in "System variables" clic on "New..." -> in "Variable name" write "python" and in "Variable value" write the path "C:\Python27\" -> clic "OK"
