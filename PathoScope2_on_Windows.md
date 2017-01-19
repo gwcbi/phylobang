@@ -22,11 +22,12 @@
 * "target" and "filter library" take time to download (~30-45min) !  
 * Go to "Command Prompt" in Windows  
 
-    C:\Python27\python C:\PathoScope-master\pathoscope\pathoscope2.py -h 
-    C:\Strawberry\perl\bin\perl C:\bowtie2-2.3.0-legacy\bowtie2 -h
+        C:\Python27\python C:\PathoScope-master\pathoscope\pathoscope2.py -h  
+        C:\Strawberry\perl\bin\perl C:\bowtie2-2.3.0-legacy\bowtie2 -h  
 
-Add python and perl path in windows
-Go to -> Control Panel -> System -> Advanced system settings -> Environment Variables
+**Add python and perl path in windows**  
+
+*   Go to -> Control Panel -> System -> Advanced system settings -> Environment Variables
 -> in "System variables" clic on "New..." -> in "Variable name" write "python" and in "Variable value" write the path "C:\Python27\" -> clic "OK"
 -> in "Variable name" write "perl" and in "Variable value" write the path "C:\Strawberry\perl\bin\" -> clic "OK"
 * Add bowtie2 path: -btHome C:\bowtie2-2.3.0-legacy\
